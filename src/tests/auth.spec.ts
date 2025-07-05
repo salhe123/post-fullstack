@@ -39,15 +39,13 @@ describe('AuthService', () => {
       'pass123',
     );
 
-    jest
-      .spyOn(userRepository, 'save')
-      .mockResolvedValue({
-        id: '1',
-        email: 'test@example.com',
-        name: 'Test User',
-        password: 'hashed',
-        role: 'USER',
-      });
+    jest.spyOn(userRepository, 'save').mockResolvedValue({
+      id: '1',
+      email: 'test@example.com',
+      name: 'Test User',
+      password: 'hashed',
+      role: 'USER',
+    });
 
     const result = await service.register(command);
 

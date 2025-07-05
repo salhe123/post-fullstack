@@ -28,14 +28,12 @@ describe('PostsService', () => {
 
   it('should create a post', async () => {
     const command = new CreatePostCommand('Test Post', 'Content', '1');
-    jest
-      .spyOn(postRepository, 'save')
-      .mockResolvedValue({
-        id: '1',
-        title: 'Test Post',
-        content: 'Content',
-        author: { id: '1' },
-      });
+    jest.spyOn(postRepository, 'save').mockResolvedValue({
+      id: '1',
+      title: 'Test Post',
+      content: 'Content',
+      author: { id: '1' },
+    });
     const result = await service.createPost(command);
     expect(result.title).toBe('Test Post');
   });

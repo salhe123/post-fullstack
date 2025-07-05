@@ -5,8 +5,7 @@ import { Comment } from '../modules/comments/entities/comment.entity';
 
 export const databaseConfig: TypeOrmModuleOptions = {
   type: 'postgres',
-  url:
-    process.env.DATABASE_URL || 'postgres://user:password@localhost:5432/blog',
+  url: 'postgres://blog_user:123456@localhost:5432/blog',  // Hardcoded here
   entities: [User, Post, Comment],
-  synchronize: true, // Set to false in production
+  synchronize: true, // disable in production!
 };

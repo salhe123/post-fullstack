@@ -11,17 +11,17 @@ import { Comment } from '../../comments/entities/comment.entity';
 @Entity()
 export class Post {
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+  id!: string;
 
   @Column()
-  title: string;
+  title!: string; // ✅ FIXED: declared with @Column and properly typed
 
   @Column()
-  content: string;
+  content!: string;
 
   @ManyToOne(() => User, (user) => user.posts)
-  author: User;
+  author!: User;
 
   @OneToMany(() => Comment, (comment) => comment.post)
-  comments: Comment[];
+  comments!: Comment[];
 }

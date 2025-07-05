@@ -28,6 +28,11 @@ import { JwtAuthGuard } from '../../../common/guards/jwt-auth.guard';
 import { RolesGuard } from '../../../common/guards/roles.guard';
 import { Roles } from '../../../common/decorators/roles.decorator';
 
+// Define interface for req.user
+interface AuthRequest extends Request {
+  user: { id: string };
+}
+
 @ApiTags('posts')
 @Controller('posts')
 export class PostsController {
@@ -40,7 +45,7 @@ export class PostsController {
   @ApiResponse({ status: 201, type: PostEntity })
   async create(
     @Body() dto: CreatePostDto,
-    @Request() req,
+    @Request() req: AuthRequest,
   ): Promise<PostEntity> {
     return this.postsService.createPost(
       new CreatePostCommand(dto.title, dto.content, req.user.id),
@@ -55,7 +60,7 @@ export class PostsController {
   async update(
     @Param('id') id: string,
     @Body() dto: UpdatePostDto,
-    @Request() req,
+    @Request() req: AuthRequest,
   ): Promise<PostEntity> {
     return this.postsService.updatePost(
       new UpdatePostCommand(id, dto.title, dto.content, req.user.id),
@@ -68,7 +73,10 @@ export class PostsController {
   @ApiBearerAuth()
   @ApiOperation({ summary: 'Delete a post' })
   @ApiResponse({ status: 204 })
-  async delete(@Param('id') id: string, @Request() req): Promise<void> {
+  async delete(
+    @Param('id') id: string,
+    @Request() req: AuthRequest,
+  ): Promise<void> {
     return this.postsService.deletePost(new DeletePostCommand(id, req.user.id));
   }
 

@@ -24,14 +24,12 @@ describe('CommentsService', () => {
 
   it('should create a comment', async () => {
     const command = new CreateCommentCommand('Great post!', '1', '1');
-    jest
-      .spyOn(commentRepository, 'save')
-      .mockResolvedValue({
-        id: '1',
-        content: 'Great post!',
-        post: { id: '1' },
-        author: { id: '1' },
-      });
+    jest.spyOn(commentRepository, 'save').mockResolvedValue({
+      id: '1',
+      content: 'Great post!',
+      post: { id: '1' },
+      author: { id: '1' },
+    });
     const result = await service.createComment(command);
     expect(result.content).toBe('Great post!');
   });

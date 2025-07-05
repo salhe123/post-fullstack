@@ -5,23 +5,23 @@ import { Comment } from '../../comments/entities/comment.entity';
 @Entity()
 export class User {
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+  id!: string;
+
+  @Column({ unique: true })
+  email!: string;
 
   @Column()
-  email: string;
+  name!: string;
 
   @Column()
-  name: string;
-
-  @Column()
-  password: string;
+  password!: string; // ✅ Add this line
 
   @Column({ default: 'USER' })
-  role: string;
+  role!: string;
 
   @OneToMany(() => Post, (post) => post.author)
-  posts: Post[];
+  posts!: Post[];
 
   @OneToMany(() => Comment, (comment) => comment.author)
-  comments: Comment[];
+  comments!: Comment[];
 }

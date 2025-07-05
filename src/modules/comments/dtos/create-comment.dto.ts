@@ -5,5 +5,5 @@ export class CreateCommentDto {
   @ApiProperty({ example: 'Great post!' })
   @IsString()
   @IsNotEmpty()
-  content: string;
+  content!: string;
 }

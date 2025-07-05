@@ -1,21 +1,22 @@
 {
   "compilerOptions": {
+    "target": "ES2023",
     "module": "commonjs",
     "declaration": true,
     "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
-    "target": "ES2023",
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
     "incremental": true,
     "skipLibCheck": true,
+    "strict": true,  // ✅ Enables full type-safety and helps ESLint
     "strictNullChecks": true,
-    "forceConsistentCasingInFileNames": true,
     "noImplicitAny": false,
-    "strictBindCallApply": false,
-    "noFallthroughCasesInSwitch": false
+    "forceConsistentCasingInFileNames": true,
+    "typeRoots": ["./node_modules/@types"], // ✅ Makes sure types like node, express are included
+    "types": ["node"] // ✅ This is essential for using process.env, etc.
   }
 }

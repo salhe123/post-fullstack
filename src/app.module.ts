@@ -1,16 +1,24 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { ThrottlerModule } from '@nestjs/throttler';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { JwtModule } from '@nestjs/jwt';
+import { ConfigModule, ConfigModuleOptions } from '@nestjs/config';
+
+import { AuthModule } from './modules/auth/auth.module';
+import { PostsModule } from './modules/posts/posts.module';
+import { CommentsModule } from './modules/comments/comments.module';
+
+import { databaseConfig } from './config/database.config';
+import { jwtConfig } from './config/jwt.config';
 
 @Module({
   imports: [
-    ThrottlerModule.forRoot({
-      ttl: 60,
-      limit: 10,
-    }),
+    ConfigModule.forRoot({ isGlobal: true } as ConfigModuleOptions),
+    TypeOrmModule.forRoot(databaseConfig),
+    JwtModule.register(jwtConfig),
+    AuthModule,
+    PostsModule,
+    CommentsModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  providers: [],
 })
 export class AppModule {}

@@ -5,10 +5,10 @@ export class CreatePostDto {
   @ApiProperty({ example: 'My First Post' })
   @IsString()
   @IsNotEmpty()
-  title: string;
+  title!: string;
 
   @ApiProperty({ example: 'This is the content of my first post.' })
   @IsString()
   @IsNotEmpty()
-  content: string;
+  content!: string;
 }
