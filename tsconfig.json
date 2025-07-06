@@ -17,6 +17,6 @@
     "noImplicitAny": false,
     "forceConsistentCasingInFileNames": true,
     "typeRoots": ["./node_modules/@types"], // ✅ Makes sure types like node, express are included
-    "types": ["node"] // ✅ This is essential for using process.env, etc.
+    "types": ["node","jest"] // ✅ This is essential for using process.env, etc.
   }
 }

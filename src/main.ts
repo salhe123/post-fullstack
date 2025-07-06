@@ -6,18 +6,16 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  // Apply global validation pipe
   app.useGlobalPipes(new ValidationPipe());
 
-  // Remove throttler guard usage if not provided
-  // app.useGlobalGuards(app.get(ThrottlerGuard));
-
+  // Swagger configuration
   const config = new DocumentBuilder()
     .setTitle('Blog API')
     .setDescription('REST API for blog system')
     .setVersion('1.0')
     .addBearerAuth()
     .build();
-
   SwaggerModule.setup(
     'api/docs',
     app,
