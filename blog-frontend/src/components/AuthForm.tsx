@@ -42,6 +42,7 @@ const AuthForm = ({ title, onSubmit, isRegister = false }: AuthFormProps) => {
             />
           </div>
         )}
+
         <div>
           <label className="block text-sm font-medium text-gray-700">
             Email
@@ -54,6 +55,7 @@ const AuthForm = ({ title, onSubmit, isRegister = false }: AuthFormProps) => {
             required
           />
         </div>
+
         <div>
           <label className="block text-sm font-medium text-gray-700">
             Password
@@ -66,6 +68,7 @@ const AuthForm = ({ title, onSubmit, isRegister = false }: AuthFormProps) => {
             required
           />
         </div>
+
         <button
           type="submit"
           className="w-full bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700 transition"
@@ -73,6 +76,7 @@ const AuthForm = ({ title, onSubmit, isRegister = false }: AuthFormProps) => {
           {title}
         </button>
       </form>
+
       <p className="mt-4 text-center">
         {isRegister ? (
           <>
